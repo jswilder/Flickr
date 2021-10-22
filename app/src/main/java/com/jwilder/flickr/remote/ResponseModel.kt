@@ -6,11 +6,11 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class ResponseWrapper(
     @Json(name = "results")
-    val movieList: List<MovieData>
+    val movieList: List<Movie>
 )
 
 @JsonClass(generateAdapter = true)
-data class MovieData(
+data class Movie(
     val trackName: String?,
     val releaseDate: String?,
     val artworkUrl100: String?,
