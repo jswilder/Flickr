@@ -15,10 +15,17 @@ class MainViewModel @Inject constructor(
     private val moviesRepository: MoviesRepository
 ) : ViewModel() {
 
+    /**
+     * Backing field for the list of movies
+     */
     private val _movieList = MutableLiveData<List<Movie>>()
     val movieList: LiveData<List<Movie>>
         get() = _movieList
 
+    /**
+     * Fetch a [List] of [Movie] from [MoviesRepository] and post the response using the background
+     * thread
+     */
     fun fetMovieData() {
         viewModelScope.launch {
             _movieList.postValue(moviesRepository.fetchMovies())

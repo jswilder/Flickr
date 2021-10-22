@@ -3,6 +3,9 @@ package com.jwilder.flickr.remote
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+/**
+ * Models for the Web Response
+ */
 @JsonClass(generateAdapter = true)
 data class ResponseWrapper(
     @Json(name = "results")

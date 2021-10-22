@@ -9,7 +9,13 @@ import com.jwilder.flickr.remote.Movie
 import com.jwilder.flickr.ui.main.callback.MovieItemDiffCallback
 import com.jwilder.flickr.ui.main.viewholder.MovieViewHolder
 
-class MovieListAdapter(val context: Context) :
+/**
+ * Simple [ListAdapter] implementation for the Movie RecyclerView
+ *
+ * @param [context] Used to provide the [MovieViewHolder] with the context it needs to fetch an
+ * image with Glide
+ */
+class MovieListAdapter(private val context: Context) :
     ListAdapter<Movie, MovieViewHolder>(MovieItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MovieViewHolder(

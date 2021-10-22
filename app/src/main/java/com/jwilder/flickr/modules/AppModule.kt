@@ -7,6 +7,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * Hilt module which provides the singleton implementation of the [MoviesRepository]
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {

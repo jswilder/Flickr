@@ -35,10 +35,6 @@ class MainFragment : Fragment() {
             )
         }
 
-        binding.message.setOnClickListener {
-            viewModel.fetMovieData()
-        }
-
         viewModel.movieList.observe(viewLifecycleOwner, Observer { list ->
             (binding.movieRecyclerView.adapter as MovieListAdapter).submitList(list)
         })

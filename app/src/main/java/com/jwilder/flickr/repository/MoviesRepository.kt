@@ -7,6 +7,9 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
+/**
+ * Repository class to fetch the [List] of [Movie] from the web and eventually the persisted data
+ */
 class MoviesRepository {
 
     private val client: OkHttpClient = OkHttpClient().newBuilder().build()
