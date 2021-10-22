@@ -1,6 +1,7 @@
 package com.jwilder.flickr.repository
 
 import android.util.Log
+import com.jwilder.flickr.remote.Movie
 import com.jwilder.flickr.remote.MovieDetailsWebService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -18,18 +19,21 @@ class MoviesRepository {
     private val service: MovieDetailsWebService =
         retrofit.create(MovieDetailsWebService::class.java)
 
-    suspend fun fetchMovies() {
-        try {
+    suspend fun fetchMovies(): List<Movie> {
+        return try {
             val response = service.fetchMovies(
                 "The Lion King",
                 "movie",
                 5
             )
 
-            Log.d(TAG,"JEREMY** ${response.body()?.movieList.toString()}")
+            return if (response.isSuccessful) {
+                response.body()?.movieList ?: emptyList()
+            } else emptyList()
 
         } catch (e: Exception) {
             Log.e(TAG, e.toString())
+            emptyList()
         }
     }
 
