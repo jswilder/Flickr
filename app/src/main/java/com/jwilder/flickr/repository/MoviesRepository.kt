@@ -1,6 +1,7 @@
 package com.jwilder.flickr.repository
 
 import android.util.Log
+import com.jwilder.flickr.dao.MovieDao
 import com.jwilder.flickr.remote.Movie
 import com.jwilder.flickr.remote.MovieDetailsWebService
 import okhttp3.OkHttpClient
@@ -10,7 +11,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 /**
  * Repository class to fetch the [List] of [Movie] from the web and eventually the persisted data
  */
-class MoviesRepository {
+class MoviesRepository(
+    val movieDao: MovieDao
+) {
 
     private val client: OkHttpClient = OkHttpClient().newBuilder().build()
     private val retrofit = Retrofit.Builder()
@@ -31,12 +34,15 @@ class MoviesRepository {
             )
 
             return if (response.isSuccessful) {
+                response.body()?.movieList?.let {
+                    movieDao.insertAll(it)
+                }
                 response.body()?.movieList ?: emptyList()
-            } else emptyList()
+            } else movieDao.getAll()
 
         } catch (e: Exception) {
             Log.e(TAG, e.toString())
-            emptyList()
+            movieDao.getAll()
         }
     }
 

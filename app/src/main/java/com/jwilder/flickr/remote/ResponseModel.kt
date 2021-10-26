@@ -1,5 +1,7 @@
 package com.jwilder.flickr.remote
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -12,9 +14,11 @@ data class ResponseWrapper(
     val movieList: List<Movie>
 )
 
+@Entity(tableName = "movie_database")
 @JsonClass(generateAdapter = true)
 data class Movie(
-    val trackName: String?,
+    @PrimaryKey
+    val trackName: String,
     val releaseDate: String?,
     val artworkUrl100: String?,
     val shortDescription: String?

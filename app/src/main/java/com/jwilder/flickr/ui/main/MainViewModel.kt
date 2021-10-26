@@ -1,9 +1,6 @@
 package com.jwilder.flickr.ui.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.jwilder.flickr.remote.Movie
 import com.jwilder.flickr.repository.MoviesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,7 +23,7 @@ class MainViewModel @Inject constructor(
      * Fetch a [List] of [Movie] from [MoviesRepository] and post the response using the background
      * thread
      */
-    fun fetMovieData() {
+    fun fetchMovieData() {
         viewModelScope.launch {
             _movieList.postValue(moviesRepository.fetchMovies())
         }
