@@ -14,8 +14,10 @@ data class ResponseWrapper(
     val movieList: List<Movie>
 )
 
+@Entity(tableName = "movie_database")
 @JsonClass(generateAdapter = true)
 data class Movie(
+    @PrimaryKey
     val trackName: String,
     val releaseDate: String?,
     val artworkUrl100: String?,

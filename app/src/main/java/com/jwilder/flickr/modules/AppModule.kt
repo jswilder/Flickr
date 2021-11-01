@@ -1,5 +1,6 @@
 package com.jwilder.flickr.modules
 
+import com.jwilder.flickr.dao.MovieDao
 import com.jwilder.flickr.repository.MoviesRepository
 import dagger.Module
 import dagger.Provides
@@ -17,8 +18,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideMoviesRepository(
-        // TODO: Movies DAO
+        movieDao: MovieDao
     ) = MoviesRepository(
-        // TODO: Movies DAO
+        movieDao
     )
 }
